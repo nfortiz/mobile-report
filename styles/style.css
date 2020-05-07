@@ -21,7 +21,7 @@
 
   --background-color: #232946;
   --headline-color: #fffffe;
-  --paragraph-color: #D0D9F4;
+  --paragraph-color: #d0d9f4;
   --button-color: #eebbc3;
   --button-text: #232946;
 
@@ -171,16 +171,7 @@ small,
 
 /*-- End grid  --*/
 
-main {
-  margin-top: 0;
-  margin-left: 5rem;
-}
-
-section {
-  width: 100%;
-  min-height: 100vh;
-}
-/*---*/
+/*--Navbar--*/
 .navbar {
   height: 100vh;
   position: fixed;
@@ -286,6 +277,25 @@ section {
   transition: var(--transition-speed);
 }
 
+main {
+  margin-top: 0;
+  margin-left: 5rem;
+}
+
+section {
+  width: 100%;
+  min-height: 100vh;
+  background-color: var(--background-color);
+  padding-bottom: var(--space-sm);
+}
+
+section.light {
+  --background-color: #d4d8f0;
+  --headline-color: #232946;
+  --paragraph-color: #232946;
+  background-color: var(--background-color);
+}
+
 /*---Hero---*/
 #main-section {
   background-color: var(--background-color);
@@ -316,7 +326,7 @@ section {
 }
 
 .card:before {
-  content: '';
+  content: "";
   height: 4px;
   display: block;
   background-color: #d4d8f0;
