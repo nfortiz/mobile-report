@@ -24,6 +24,7 @@
   --paragraph-color: #d0d9f4;
   --button-color: #eebbc3;
   --button-text: #232946;
+  --link-color: #eebbc3;
 
   --card-background-color: #fffffe;
   --card-highlight: #d4939d;
@@ -72,6 +73,7 @@ h4,
   font-size: var(--text-md, 1.2em);
   font-family: var(--font-family);
 }
+p,
 .text-base {
   font-size: 1em;
   font-family: var(--font-family);
@@ -104,6 +106,26 @@ small,
 }
 .padding-md {
   padding: var(--space-md);
+}
+
+h1,
+h2,
+h3 {
+  text-transform: capitalize;
+  color: var(--headline-color);
+}
+
+p {
+  color: var(--paragraph-color);
+}
+
+a {
+  font-weight: 600;
+  color: var(--link-color);
+}
+
+a:hover {
+  scale: (1.1);
 }
 
 /*-- Layout  --*/
@@ -290,6 +312,7 @@ section {
 }
 
 section.light {
+  --link-color: #232946;
   --background-color: #d4d8f0;
   --headline-color: #232946;
   --paragraph-color: #232946;
@@ -300,11 +323,17 @@ section.light {
 #main-section {
   background-color: var(--background-color);
 }
+
 .hero {
   display: flex;
   flex-direction: column;
   justify-content: center;
   min-height: 30rem;
+
+  background-image: url("https://natrium.io/assets/hero-phone-v2.png");
+  background-position: right center;
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 .hero__title {
@@ -323,6 +352,18 @@ section.light {
   overflow: hidden;
   text-align: center;
   color: var(--card-paragraph);
+  transition: 450ms all;
+  -webkit-transform-origin: center left;
+  transform-origin: center left;
+}
+
+.card:hover {
+  transform: scale(1.1);
+}
+
+.card:hover ~ .card {
+  -webkit-transform: translate3d(50px, 0, 0);
+  transform: translate3d(50px, 0, 0);
 }
 
 .card:before {
@@ -332,9 +373,15 @@ section.light {
   background-color: #d4d8f0;
 }
 
+.card__title > a {
+  text-decoration: none;
+  color: var(--card-paragraph);
+}
+
 .card__downloads--number {
   font-weight: bold;
   display: block;
+  color: var(--card-paragraph);
 }
 
 .card__downloads--starts {
@@ -367,5 +414,18 @@ section.light {
 
   .navbar:hover .logo-text {
     left: 0px;
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  .container {
+    margin: 0 auto;
+    max-width: calc(100vw - 20rem);
+    min-width: 75%;
+  }
+  .container > .row {
+    display: grid;
+    grid-gap: 1rem;
+    grid-template-columns: repeat(auto-fit , minmax(240px, 1fr));
   }
 }
