@@ -44,6 +44,7 @@
   "devDependencies": {
     "babel-loader": "^8.1.0",
     "copy-webpack-plugin": "^5.1.1",
+    "html-webpack-plugin": "^4.3.0",
     "nodemon": "^2.0.3",
     "standard": "^14.3.4",
     "webpack-cli": "^3.3.11",

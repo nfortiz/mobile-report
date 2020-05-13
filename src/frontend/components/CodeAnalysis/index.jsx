@@ -10,6 +10,7 @@ function CodeAnalysis () {
   const [data, setData] = useState(null)
 
   useEffect(() => {
+    console.log('Oscar pero que monda')
     const getData = async () => {
       try {
         const resp = await getContributorsFromGitHub()

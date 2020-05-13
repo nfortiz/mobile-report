@@ -24,7 +24,7 @@ if (config.dev) {
   app.use(webpackHotMiddleware(compiler))
 }
 
-const setResponse = (html, styles) => {
+const setResponse = (html, styles = '') => {
   return (`
   <!DOCTYPE html>
 <html lang="en">
@@ -37,6 +37,7 @@ const setResponse = (html, styles) => {
   </head>
   <body>
     <div id="app">${html}</div>  
+    <script src="main.js" type="text/javascript"></script>
   </body>
 </html>
 
@@ -46,6 +47,16 @@ const setResponse = (html, styles) => {
 const renderApp = (req, res) => {
   const sheet = new ServerStyleSheet()
   try {
+    /* const html = renderToString(
+
+      <App />
+
+    ) */
+    /* const html = renderToString(
+      <StyleSheetManager sheet={sheet.instance}>
+        <App />
+      </StyleSheetManager>
+    ) */
     const html = renderToString(sheet.collectStyles(<App />))
     const styles = sheet.getStyleTags()
     res.send(setResponse(html, styles))

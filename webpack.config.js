@@ -21,6 +21,7 @@ module.exports = {
   },
   plugins: [
     config.dev ? new webpack.HotModuleReplacementPlugin() : () => {},
+
     new CopyWebpackPlugin([
       {
         from: './src/frontend/styles/style.css',
