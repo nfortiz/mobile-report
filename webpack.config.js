@@ -13,8 +13,9 @@ module.exports = {
   mode: config.dev ? 'development' : 'production',
   entry,
   output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: 'main.js'
+    path: path.resolve(__dirname, 'src/server/public'),
+    filename: 'assets/app.js',
+    publicPath: '/'
   },
   resolve: {
     extensions: ['.js', '.jsx']

@@ -22,6 +22,8 @@ if (config.dev) {
 
   app.use(webpackDevMiddleware(compiler, serverConfig))
   app.use(webpackHotMiddleware(compiler))
+} else {
+  app.use(express.static(`${__dirname}/public`))
 }
 
 const setResponse = (html, styles = '') => {
@@ -32,12 +34,11 @@ const setResponse = (html, styles = '') => {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Reporte</title>
-    <link rel="stylesheet" href="./style.css" />
     ${styles}
   </head>
   <body>
     <div id="app">${html}</div>  
-    <script src="main.js" type="text/javascript"></script>
+    <script src="assets/app.js" type="text/javascript"></script>
   </body>
 </html>
 
