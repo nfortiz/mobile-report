@@ -5,6 +5,7 @@
   "main": "src/server/index.js",
   "scripts": {
     "standard": "standard --fix",
+    "start": "node src/server/index.js",
     "start:dev": "nodemon src/server/index.js",
     "build": "webpack-cli --config webpack.config.js --colors"
   },
