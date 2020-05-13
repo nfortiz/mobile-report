@@ -2,11 +2,10 @@
   "name": "reporte-moviles",
   "version": "1.0.0",
   "description": "Reporte de la aplicacion Natrium para la clase de desarrollo de construccion de aplicaciones moviles",
-  "main": "index.js",
+  "main": "src/server/index.js",
   "scripts": {
     "standard": "standard --fix",
     "start:dev": "nodemon src/server/index.js",
-    "start": "node src/server/index.js",
     "build": "webpack-cli --config webpack.config.js --colors"
   },
   "repository": {
