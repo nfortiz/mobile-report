@@ -8,6 +8,7 @@ import App from '../frontend/App'
 
 import { config } from './config'
 import GithubService from './services/github'
+import { ServerStyleSheet, StyleSheetManager } from 'styled-components'
 
 const app = express()
 app.use(express.json())
@@ -23,7 +24,7 @@ if (config.dev) {
   app.use(webpackHotMiddleware(compiler))
 }
 
-const setResponse = (html) => {
+const setResponse = (html, styles) => {
   return (`
   <!DOCTYPE html>
 <html lang="en">
@@ -32,6 +33,7 @@ const setResponse = (html) => {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Reporte</title>
     <link rel="stylesheet" href="./style.css" />
+    ${styles}
   </head>
   <body>
     <div id="app">${html}</div>  
@@ -42,10 +44,16 @@ const setResponse = (html) => {
 }
 
 const renderApp = (req, res) => {
-  const html = renderToString(
-    <App />
-  )
-  res.send(setResponse(html))
+  const sheet = new ServerStyleSheet()
+  try {
+    const html = renderToString(sheet.collectStyles(<App />))
+    const styles = sheet.getStyleTags()
+    res.send(setResponse(html, styles))
+  } catch (error) {
+    console.log(error)
+  } finally {
+    sheet.seal()
+  }
 }
 
 GithubService(app)

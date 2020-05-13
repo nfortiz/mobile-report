@@ -1,7 +1,6 @@
 const path = require('path')
 const { config } = require('./src/server/config')
 const webpack = require('webpack')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 const entry = ['./src/frontend/index.js']
@@ -22,11 +21,6 @@ module.exports = {
   },
   plugins: [
     config.dev ? new webpack.HotModuleReplacementPlugin() : () => {},
-    new HtmlWebpackPlugin({
-      inject: true,
-      template: 'src/frontend/index.html',
-      filename: './index.html'
-    }),
     new CopyWebpackPlugin([
       {
         from: './src/frontend/styles/style.css',
