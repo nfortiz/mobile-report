@@ -11,8 +11,11 @@ import { timelineDefault } from '../../utils/timeline'
 
 import * as d3 from 'd3'
 
-function CodeAnalysis () {
+if (typeof Highcharts === 'object') {
   timeline(Highcharts)
+}
+
+function CodeAnalysis () {
   const d3Container = useRef(null)
   const container = useRef(null)
 
@@ -183,7 +186,6 @@ function CodeAnalysis () {
           }
         ]
       }
-      console.table(data)
       setTimelineData(addedReleases)
     }
   }, [releases])
@@ -239,7 +241,7 @@ function CodeAnalysis () {
               </CardContent>
             </Card>
           </Column>
-          <Column span='10'>
+          <Column span='12'>
             <Card>
               <HighchartsReact
                 highcharts={Highcharts}
