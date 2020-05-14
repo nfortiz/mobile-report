@@ -23,3 +23,17 @@ export const Contributor = styled.div`
     
   }
 `
+
+export const Svg = styled.svg`
+  min-width: 550px;
+  min-height: 350px;
+  position: relative;
+  display: inline-block;
+
+  .tooltip {
+    position: absolute;
+    z-index: 1070;
+    display: block;
+    margin: 0;
+  }
+`

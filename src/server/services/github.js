@@ -8,8 +8,8 @@ function GithubService (app) {
   const routerGitHub = router()
   app.use(routerGitHub)
 
-  routerGitHub.get('/api/github', async (req, res) => {
-    const resp = await axios.get(`${BASE_URL}/repos/appditto/natrium_wallet_flutter/stats/contributors`, {
+  routerGitHub.get('/api/github/commits', async (req, res) => {
+    const resp = await axios.get(`${BASE_URL}/repos/appditto/natrium_wallet_flutter/stats/commit_activity`, {
       headers: {
         Authorization: `token ${config.githubOauthToken}`
       }

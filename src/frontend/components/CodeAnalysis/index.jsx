@@ -1,21 +1,26 @@
 import React, { useRef, useEffect, useState } from 'react'
-import { getContributorsFromGitHub } from '../../utils/githubStats'
+import moment from 'moment'
+import { getContributorsFromGitHub, getCommitsFromGitHub } from '../../utils/githubStats'
 import { Container, Row, Column } from '../../styles/grid'
 import { Card, CardTitle, CardContent } from '../../styles/card'
-import { Contributor } from './styles'
+import { Contributor, Svg } from './styles'
 
 import * as d3 from 'd3'
 
 function CodeAnalysis () {
-  const [data, setData] = useState(null)
+  const d3Container = useRef(null)
+  const container = useRef(null)
+  const [contributors, setContributors] = useState(null)
+  const [commits, setCommits] = useState(null)
 
   useEffect(() => {
-    console.log('Oscar pero que monda')
     const getData = async () => {
       try {
         const resp = await getContributorsFromGitHub()
-        console.log(resp)
-        setData(resp)
+        setContributors(resp)
+
+        const respCommits = await getCommitsFromGitHub()
+        setCommits(respCommits)
       } catch (err) {
         console.log(err)
       }
@@ -23,6 +28,116 @@ function CodeAnalysis () {
 
     getData()
   }, [])
+
+  useEffect(() => {
+    if (commits && d3Container.current && container.current) {
+      // set the dimensions and margins of the graph
+      const margin = { top: 10, right: 30, bottom: 30, left: 60 }
+      const width = 550 - margin.left - margin.right
+      const height = 350 - margin.top - margin.bottom
+
+      const svg = d3.select(d3Container.current)
+
+      const update = svg
+        .append('svg')
+        .attr('width', width + margin.left + margin.right)
+        .attr('height', height + margin.top + margin.bottom)
+        .append('g')
+        .attr('transform',
+          'translate(' + margin.left + ',' + margin.top + ')')
+
+      const mappedDates = commits.map(commit => {
+        const formatedDate = moment(new Date(commit.week * 1000)).format('yyyy-MM-DD')
+        const week = moment(new Date(commit.week * 1000)).format('MMM Do YY')
+        return ({ ...commit, week, date: d3.timeParse('%Y-%m-%d')(formatedDate) })
+      })
+
+      const x = d3.scaleTime()
+        .domain(d3.extent(mappedDates, function (d) { return d.date }))
+        .range([0, width])
+
+      update
+        .append('g')
+        .attr('transform', 'translate(0,' + height + ')')
+        .call(d3.axisBottom(x))
+
+      const y = d3.scaleLinear()
+        .domain([0, 50])
+        .range([height, 0])
+
+      update
+        .append('g')
+        .call(d3.axisLeft(y))
+
+      update
+        .append('path')
+        .datum(mappedDates)
+        .attr('fill', 'none')
+        .attr('stroke', '#69b3a2')
+        .attr('stroke-width', 1)
+        .attr('d', d3.line()
+          .x(function (d) { return x(d.date) })
+          .y(function (d) { return y(d.total) })
+        )
+
+      // create a tooltip
+      d3.select(container.current)
+        .style('position', 'relative')
+        .style('display', 'inline-block')
+
+      const Tooltip = d3.select(container.current)
+        .append('div')
+        .style('opacity', 0)
+        .style('visibility', 'hidden')
+        .attr('class', 'tooltip')
+        .style('background-color', 'white')
+        .style('border', 'solid')
+        .style('border-width', '2px')
+        .style('border-radius', '5px')
+        .style('padding', '5px')
+        .style('font-size', '1rem')
+        .style('position', 'absolute')
+        .style('right', '100px')
+        .style('top', '20px')
+
+      const mouseover = function (d) {
+        const text = `# Commits: ${d.total} Fecha: ${d.week}`
+        Tooltip
+          .html(text)
+          .style('opacity', 1)
+          .style('visibility', 'visible')
+      }
+      const mousemove = function (d) {
+        const text = `# Commits: ${d.total}\n Fecha: ${d.week}`
+        Tooltip
+          .html(text)
+          // .style('left', (d3.mouse(this)[0] + 70) + 'px')
+          // .style('top', (d3.mouse(this)[1]) + 'px')
+      }
+      const mouseleave = function (d) {
+        Tooltip
+          .style('opacity', 0)
+          .style('visibility', 'hidden')
+      }
+
+      update
+        .append('g')
+        .selectAll('dot')
+        .data(mappedDates)
+        .enter()
+        .append('circle')
+        .attr('cx', function (d) { return x(d.date) })
+        .attr('cy', function (d) { return y(d.total) })
+        .attr('r', 4)
+        .attr('fill', '#69b3a2')
+        .on('mouseover', mouseover)
+        .on('mouseleave', mouseleave)
+        .on('mousemove', mousemove)
+
+      update.exit()
+        .remove()
+    }
+  }, [commits, d3Container.current, container.current])
 
   return (
     <section>
@@ -39,7 +154,7 @@ function CodeAnalysis () {
             <Card>
               <CardTitle>Contribuyentes</CardTitle>
               <CardContent>
-                {data && data.map((contributor, index) => {
+                {contributors && contributors.map((contributor, index) => {
                   return (
                     <Contributor key={index}>
                       <img src={contributor.author.avatar_url} />
@@ -59,6 +174,16 @@ function CodeAnalysis () {
           <Column span='8'>
             <Card>
               <CardTitle>Historial de Contribuciones</CardTitle>
+              <CardContent
+                ref={container}
+              >
+                <Svg
+                  className='d3-component'
+                  width={400}
+                  height={300}
+                  ref={d3Container}
+                />
+              </CardContent>
             </Card>
           </Column>
         </Row>
