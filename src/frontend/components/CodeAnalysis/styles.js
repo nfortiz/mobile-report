@@ -3,7 +3,7 @@ import styled from 'styled-components'
 export const Contributor = styled.div`
   padding: var( --space-sm);
   display: flex;
-  border: 3px solid var(--card-paragraph);
+  border: 1px solid var(--card-paragraph);
   border-radius: 5px;
   margin-bottom: var( --space-sm);
   justify-content: space-between;

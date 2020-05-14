@@ -58,8 +58,8 @@ function CodeAnalysis () {
 
       update
         .append('g')
-        .attr('transform', 'translate(0,' + height + ')')
-        .call(d3.axisBottom(x))
+        .attr('transform', 'translate(0,' + (height) + ')')
+        .call(d3.axisBottom(x).ticks(6).tickSizeOuter(0))
 
       const y = d3.scaleLinear()
         .domain([0, 50])
@@ -68,6 +68,17 @@ function CodeAnalysis () {
       update
         .append('g')
         .call(d3.axisLeft(y))
+
+      update.append('path')
+        .datum(mappedDates)
+        .attr('fill', '#69b3a2')
+        .attr('fill-opacity', 0.3)
+        .attr('stroke', 'none')
+        .attr('d', d3.area()
+          .x(function (d) { return x(d.date) })
+          .y0(height)
+          .y1(function (d) { return y(d.total) })
+        )
 
       update
         .append('path')
@@ -87,8 +98,8 @@ function CodeAnalysis () {
 
       const Tooltip = d3.select(container.current)
         .append('div')
-        .style('opacity', 0)
-        .style('visibility', 'hidden')
+        .style('opacity', 0.5)
+        .style('visibility', 'visible')
         .attr('class', 'tooltip')
         .style('background-color', 'white')
         .style('border', 'solid')
@@ -98,7 +109,8 @@ function CodeAnalysis () {
         .style('font-size', '1rem')
         .style('position', 'absolute')
         .style('right', '100px')
-        .style('top', '20px')
+        .style('bottom', '300px')
+        .html('selecciona un punto')
 
       const mouseover = function (d) {
         const text = `# Commits: ${d.total} Fecha: ${d.week}`
@@ -177,6 +189,10 @@ function CodeAnalysis () {
               <CardContent
                 ref={container}
               >
+                <p>
+                Analizando las contribuciones al master, única rama disponible del repositorio y que cuenta a la fecha 12 de Mayo de 2020 con 1238 commits,
+                 ha ido a la baja el desarrollo de la aplicación. A continuacion se muestra el gráfico de número de commits en el eje Y y la semana en el que fueron realizados en el eje X.
+                </p>
                 <Svg
                   className='d3-component'
                   width={400}
