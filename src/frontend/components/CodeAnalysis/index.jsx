@@ -108,7 +108,7 @@ function CodeAnalysis () {
         .style('padding', '5px')
         .style('font-size', '1rem')
         .style('position', 'absolute')
-        .style('right', '100px')
+        .style('right', '10%')
         .style('bottom', '300px')
         .html('selecciona un punto')
 
