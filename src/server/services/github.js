@@ -27,6 +27,16 @@ function GithubService (app) {
 
     res.status(200).json(resp.data)
   })
+
+  routerGitHub.get('/api/github/releases', async (req, res) => {
+    const resp = await axios.get(`${BASE_URL}/repos/appditto/natrium_wallet_flutter/releases`, {
+      headers: {
+        Authorization: `token ${config.githubOauthToken}`
+      }
+    })
+
+    res.status(200).json(resp.data)
+  })
 }
 
 export default GithubService

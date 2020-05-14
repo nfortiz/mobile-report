@@ -11,3 +11,9 @@ export const getCommitsFromGitHub = async () => {
   const data = await resp.data
   return data
 }
+
+export const getReleasesFromGitHub = async () => {
+  const resp = await axios.get('./api/github/releases')
+  const data = await resp.data
+  return data
+}

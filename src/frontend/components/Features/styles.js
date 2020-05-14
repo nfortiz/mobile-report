@@ -1,10 +1,9 @@
 import styled from 'styled-components'
 
 export const List = styled.ul`
-  list-style-type: none; 
-  
+  list-style-type: none;   
   padding: 0;
-  margin: var(--space-sm) 0; 
+  margin: var(--space-md) 0; 
 `
 export const Item = styled.li`
     border: 1px solid #ddd;     
@@ -21,6 +20,10 @@ export const Item = styled.li`
     }
     &:last-child {
       border-radius: 0 0 0 10px;
+    }
+    
+    p {
+      color: var(--card-paragraph);
     }
 
 `

@@ -1,17 +1,26 @@
 import React, { useRef, useEffect, useState } from 'react'
 import moment from 'moment'
-import { getContributorsFromGitHub, getCommitsFromGitHub } from '../../utils/githubStats'
+import Highcharts from 'highcharts'
+import timeline from 'highcharts/modules/timeline'
+import HighchartsReact from 'highcharts-react-official'
+import { getContributorsFromGitHub, getCommitsFromGitHub, getReleasesFromGitHub } from '../../utils/githubStats'
 import { Container, Row, Column } from '../../styles/grid'
 import { Card, CardTitle, CardContent } from '../../styles/card'
 import { Contributor, Svg } from './styles'
+import { timelineDefault } from '../../utils/timeline'
 
 import * as d3 from 'd3'
 
 function CodeAnalysis () {
+  timeline(Highcharts)
   const d3Container = useRef(null)
   const container = useRef(null)
+
   const [contributors, setContributors] = useState(null)
   const [commits, setCommits] = useState(null)
+
+  const [releases, setReleases] = useState([])
+  const [timelineData, setTimelineData] = useState(timelineDefault)
 
   useEffect(() => {
     const getData = async () => {
@@ -21,6 +30,9 @@ function CodeAnalysis () {
 
         const respCommits = await getCommitsFromGitHub()
         setCommits(respCommits)
+
+        const respReleases = await getReleasesFromGitHub()
+        setReleases(respReleases)
       } catch (err) {
         console.log(err)
       }
@@ -151,6 +163,31 @@ function CodeAnalysis () {
     }
   }, [commits, d3Container.current, container.current])
 
+  useEffect(() => {
+    if (releases) {
+      const data = releases.map(release => {
+        return ({
+          x: moment(release.created_at).toDate(),
+          name: release.name,
+          label: release.name,
+          description: release.body || ''
+        })
+      }).reverse()
+
+      const addedReleases = {
+        ...timelineDefault,
+        series: [
+          {
+            ...timelineDefault.series[0],
+            data: data
+          }
+        ]
+      }
+      console.table(data)
+      setTimelineData(addedReleases)
+    }
+  }, [releases])
+
   return (
     <section>
       <Container>
@@ -202,7 +239,17 @@ function CodeAnalysis () {
               </CardContent>
             </Card>
           </Column>
+          <Column span='10'>
+            <Card>
+              <HighchartsReact
+                highcharts={Highcharts}
+                options={timelineData}
+              />
+            </Card>
+
+          </Column>
         </Row>
+
       </Container>
 
     </section>

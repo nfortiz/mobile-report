@@ -15,22 +15,22 @@ function Features () {
     <section>
       <Container>
         <Row>
-          <Column span='6'>
-            <FigureWrapper>
-              <Img src={current.source} />
-            </FigureWrapper>
-          </Column>
           <Column span='4'>
             <List>
               {features.map((feat, idx) => {
                 return (
                   <Item key={idx} onClick={() => onClickItem(feat)}>
-                    {feat.title}
+                    <p>{feat.title}</p>
                   </Item>
                 )
               })}
 
             </List>
+          </Column>
+          <Column span='6'>
+            <FigureWrapper>
+              <Img src={current.source} />
+            </FigureWrapper>
           </Column>
         </Row>
       </Container>
