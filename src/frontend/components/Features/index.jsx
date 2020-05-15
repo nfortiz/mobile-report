@@ -12,7 +12,7 @@ function Features () {
   }
 
   return (
-    <section>
+    <section id='feature'>
       <Container>
         <Row>
           <Column>
@@ -22,26 +22,34 @@ function Features () {
             </p>
           </Column>
           <Column span='12'>
-            <FeatureWrapper>
-              <List>
-                {features.map((feat, idx) => {
-                  return (
-                    <Item key={idx} onClick={() => onClickItem(feat)}>
-                      <p>{feat.title}</p>
-                    </Item>
-                  )
-                })}
+            <Card>
+              <FeatureWrapper>
+                <List>
+                  {features.map((feat, idx) => {
+                    return (
+                      <Item
+                        key={idx}
+                        onClick={() => onClickItem(feat)}
+                        selected={current.title === feat.title}
+                      >
+                        <p>{feat.title}</p>
+                      </Item>
+                    )
+                  })}
 
-              </List>
-              <FeatureDescription>
-                <Figure>
-                  <Img src={current.source} />
-                </Figure>
-                <p>
-                  {current.description}
-                </p>
-              </FeatureDescription>
-            </FeatureWrapper>
+                </List>
+
+                <FeatureDescription>
+                  <Figure>
+                    <Img src={current.source} />
+                  </Figure>
+                  <p>
+                    {current.description}
+                  </p>
+                </FeatureDescription>
+
+              </FeatureWrapper>
+            </Card>
           </Column>
         </Row>
       </Container>

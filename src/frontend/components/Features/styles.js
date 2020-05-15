@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 export const FeatureWrapper = styled.div`
   display: flex;
@@ -29,7 +29,12 @@ export const Item = styled.li`
     }
     &:last-child {
       border-radius: 0 0 0 10px;
-    }    
+    } 
+
+    ${props => props.selected && css`
+      background-color: #fff; 
+      font-weight: bold;
+  `}
 
 `
 
@@ -37,7 +42,7 @@ export const FeatureDescription = styled.div`
   margin: var(--space-md) 0; 
   background-color: #f6f6f6;
   padding: 0 0 var(--space-sm);
-  width: 40%;
+  width: 50%;
   border-radius: 0 10px 10px 0;
   p {
     padding-left: var(--space-sm);
@@ -55,12 +60,12 @@ export const Figure = styled.figure`
 `
 
 export const Img = styled.img`
-
   box-shadow: 0 10px 14px rgba(0, 0, 0, .2);
   height: 100%;
-  max-height: 300px;
+  max-height: 400px;
   object-fit: contain;
   position: absolute;
   top: 0;
+  left: 0;
   width: 100%;
 `
