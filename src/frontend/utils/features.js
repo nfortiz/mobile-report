@@ -1,9 +1,9 @@
 export const features = [
   {
-    title: 'Create a new NANO wallet',
+    title: 'Crear una nueva NANO billetera',
     description: 'En el momento de iniciar la aplicación, después de haber realizado la instalación de esta, aparece una ventana en la cual se muestra un mensaje de bienvenida a la aplicación y se solicita la creación o importación de una billetera para que el usuario use. Como se está verificando la funcionalidad de crear nueva billetera, se seleccionó dicha opción.',
     type_source: 'img',
-    source: 'https://picsum.photos/id/237/200/300'
+    source: 'https://firebasestorage.googleapis.com/v0/b/reporte-moviles-21692.appspot.com/o/Screen%20Recording%202020-05-15%20at%2009.38.10.67%20AM.gif?alt=media&token=81238aca-35e7-41ea-981f-cc64d0c49470'
   },
   {
     title: 'Importar una NANO billetera',
