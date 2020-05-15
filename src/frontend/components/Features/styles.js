@@ -1,6 +1,15 @@
 import styled from 'styled-components'
 
+export const FeatureWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  p {
+      color: var(--card-paragraph);
+  }
+`
+
 export const List = styled.ul`
+  min-width: 40%;
   list-style-type: none;   
   padding: 0;
   margin: var(--space-md) 0; 
@@ -20,29 +29,37 @@ export const Item = styled.li`
     }
     &:last-child {
       border-radius: 0 0 0 10px;
-    }
-    
-    p {
-      color: var(--card-paragraph);
-    }
+    }    
 
 `
 
-export const FigureWrapper = styled.figure`
-    display: block;
-    border-radius: 0 10px 10px 0;
+export const FeatureDescription = styled.div`
+  margin: var(--space-md) 0; 
+  background-color: #f6f6f6;
+  padding: 0 0 var(--space-sm);
+  width: 40%;
+  border-radius: 0 10px 10px 0;
+  p {
+    padding-left: var(--space-sm);
+    padding-right: var(--space-sm);
+  }
+
+`
+
+export const Figure = styled.figure`
+    display: block;    
     height: 0;
     overflow: hidden;
     padding: 56.25% 0 0 0;
     position: relative;
-    width: 80%;
-
 `
 
 export const Img = styled.img`
+
   box-shadow: 0 10px 14px rgba(0, 0, 0, .2);
   height: 100%;
-  object-fit: cover;
+  max-height: 300px;
+  object-fit: contain;
   position: absolute;
   top: 0;
   width: 100%;

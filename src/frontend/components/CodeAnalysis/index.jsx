@@ -170,6 +170,7 @@ function CodeAnalysis () {
     if (releases) {
       const data = releases.map(release => {
         return ({
+          date: moment(release.created_at).format('MMM Do YY'),
           x: moment(release.created_at).toDate(),
           name: release.name,
           label: release.name,
@@ -191,7 +192,7 @@ function CodeAnalysis () {
   }, [releases])
 
   return (
-    <section>
+    <section id='analysis'>
       <Container>
         <Row>
           <Column span='12'>
@@ -243,10 +244,17 @@ function CodeAnalysis () {
           </Column>
           <Column span='12'>
             <Card>
-              <HighchartsReact
-                highcharts={Highcharts}
-                options={timelineData}
-              />
+              <CardTitle>Historial de Releases</CardTitle>
+              <CardContent>
+                <p>A continuación se muestra en un timeline donde se aprecia las últimas versiones del proyecto,
+                  cada círculo de color corresponde a una nueva versión de la aplicación y al posicionar el mouse sobre el circulo veras los cambios importantes de esa version.
+                </p>
+                <HighchartsReact
+                  highcharts={Highcharts}
+                  options={timelineData}
+                />
+              </CardContent>
+
             </Card>
 
           </Column>

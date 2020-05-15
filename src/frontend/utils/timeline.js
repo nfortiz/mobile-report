@@ -18,13 +18,13 @@ export const timelineDefault = {
     enabled: false
   },
   title: {
-    text: 'Timeline de los Releases de la app'
+    text: 'Timeline de los Releases de Natrium'
   },
   series: [{
     dataLabels: {
       allowOverlap: false,
       format: '<span style="color:{point.color}">● </span><span style="font-weight: bold;" > ' +
-        '{point.x:%d %b %Y}</span><br/>{point.label}'
+        '{point.date}</span><br/>{point.label}'
     },
     marker: {
       symbol: 'circle'

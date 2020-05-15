@@ -3,6 +3,7 @@ import styled from 'styled-components'
 export const Nav = styled.nav`
   height: 100vh;
   position: fixed;
+  z-index: 1000;
   background-color: var(--bg-primary);
   transition: width 600ms ease;
   overflow-y: auto;
