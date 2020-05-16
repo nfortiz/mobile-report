@@ -19,6 +19,7 @@ export const Item = styled.li`
     margin-top: -1px;
     background-color: #f6f6f6; 
     padding: 12px; 
+    cursor: pointer;
 
     &:hover {
       background-color: #fff; 
@@ -34,6 +35,7 @@ export const Item = styled.li`
     ${props => props.selected && css`
       background-color: #fff; 
       font-weight: bold;
+      border-right: none;
   `}
 
 `
