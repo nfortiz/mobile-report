@@ -41,7 +41,6 @@ function DesignAnalysis () {
               <CardContent>
                 <Colors size={Object.keys(currentTheme.colors).length}>
                   {Object.keys(currentTheme.colors).map((color, idx) => {
-                    console.log(currentTheme.colors[color])
                     return (
                       <ColorWrapper key={idx}>
                         <ColorItem color={currentTheme.colors[color]} />
