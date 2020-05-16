@@ -5,7 +5,7 @@ export const Nav = styled.nav`
   position: fixed;
   z-index: 1000;
   background-color: var(--bg-primary);
-  transition: width 600ms ease;
+  transition: width var(--transition-speed) ease;
   overflow-y: auto;
   overflow-x: hidden;
 

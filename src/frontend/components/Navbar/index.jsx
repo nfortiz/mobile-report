@@ -86,7 +86,7 @@ function Navbar () {
         </li>
 
         <li className='nav-item'>
-          <a href='#' className='nav-link'>
+          <a href='#design' className='nav-link'>
             <svg
               aria-hidden='true'
               focusable='false'
@@ -110,7 +110,7 @@ function Navbar () {
                 />
               </g>
             </svg>
-            <span className='link-text'>Space</span>
+            <span className='link-text'>Design</span>
           </a>
         </li>
 

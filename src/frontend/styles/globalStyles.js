@@ -26,6 +26,7 @@ export const GlobalStyles = createGlobalStyle`
     --button-color: #eebbc3;
     --button-text: #232946;
     --link-color: #eebbc3;
+    --highlight-color: #eebbc3;
   
     --card-background-color: #fffffe;
     --card-highlight: #d4939d;
