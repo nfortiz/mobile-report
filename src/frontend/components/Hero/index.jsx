@@ -31,7 +31,7 @@ function Hero () {
           <article className='col-4 card'>
             <p className='card__title text-md'>
               <a
-                href='https://natrium.io/assets/button-playstore-v2.svg'
+                href='https://play.google.com/store/apps/details?id=co.banano.natriumwallet'
                 className=''
               >
           Play Store

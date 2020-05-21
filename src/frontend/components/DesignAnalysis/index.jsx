@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Container, Row, Column } from '../../styles/grid'
 import { Card, CardTitle, CardContent } from '../../styles/card'
-import { Button, Hue, HueTitle, Colors, ColorWrapper, ColorItem, ColorText } from './styles'
+import { Button, Hue, HueTitle, Colors, ColorWrapper, ColorItem, ColorText, ColorName } from './styles'
 
 import { themes } from '../../utils/themes'
 
@@ -45,6 +45,7 @@ function DesignAnalysis () {
                       <ColorWrapper key={idx}>
                         <ColorItem color={currentTheme.colors[color]} />
                         <ColorText>{currentTheme.colors[color]}</ColorText>
+                        <ColorName>{color}</ColorName>
                       </ColorWrapper>
                     )
                   })}

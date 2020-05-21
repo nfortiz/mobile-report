@@ -52,14 +52,16 @@ export const Colors = styled.div`
   grid-gap: 0;
   grid-template-columns: repeat(${props => props.size}, 1fr);
   border-radius: 5px;
+  margin-top: var(--space-md);
 `
 export const ColorWrapper = styled.div`
   grid-column-end: span 1;
   height: 100%;
   width: 100%;
   position: relative;
-  overflow: hidden;
+
   transition: var(--transition-speed) ease;
+  
 
   &:hover div {
     opacity: 0.4;
@@ -69,6 +71,10 @@ export const ColorWrapper = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+
+  &:hover p {
+    display: inline-block;
   }
 `
 
@@ -92,4 +98,16 @@ export const ColorText = styled.span`
   width: 100%;
   font-family: var(--font-family);
   color: var(--headline-color);
+`
+export const ColorName = styled.p`
+  position: absolute;
+  display: none;
+  top: -50px;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  font-family: var(--font-family);
+  color: var(--headline-color);
+  z-index: 100;
+  text-transform: capitalize;
 `
