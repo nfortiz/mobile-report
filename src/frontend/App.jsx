@@ -5,6 +5,7 @@ import CodeAnalysis from './components/CodeAnalysis'
 import Features from './components/Features'
 import Navbar from './components/Navbar'
 import PerformaceAnalysis from './components/PerformaceAnalysis'
+import EventualConectivity from './components/EventualConectivity'
 import Layout from './conteiners/Layout'
 import { GlobalStyles } from './styles/globalStyles'
 
@@ -19,6 +20,7 @@ const App = () => {
         <Features />
         <DesignAnalysis />
         <PerformaceAnalysis />
+        <EventualConectivity />
       </Layout>
 
     </>

@@ -23,7 +23,9 @@ export const CardContent = styled.div`
   color: var(--card-paragraph);
   font-size: 1rem;
   font-weight: nomal;
-
+   & p {
+    text-align: left;
+   }
   .card-highlight {
     color:var(--card-highlight);
   }

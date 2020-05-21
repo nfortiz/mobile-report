@@ -34,6 +34,8 @@ const setResponse = (html, styles = '') => {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Reporte</title>
+    <link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.0/styles/dracula.min.css">
     ${styles}
   </head>
   <body>
