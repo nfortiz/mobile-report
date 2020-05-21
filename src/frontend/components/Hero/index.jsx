@@ -72,6 +72,9 @@ function Hero () {
               <span className='card__downloads--starts text-base'>Releases</span>
             </p>
           </article>
+          <div className='col-6'>
+            <iframe width='100%' height='166' scrolling='no' frameborder='no' allow='autoplay' src='https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/825450904&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true' /><div style={{ fontSize: 10 + 'px', color: '#cccccc', lineBreak: 'anywhere', wordBreak: 'normal', overflow: 'hidden', whiteSpace: 'nowrap', textOverflow: 'ellipsis', fontFamily: ['Interstate', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', 'Garuda', 'Verdana', 'Tahoma', 'sans-serif'], fontWeight: 100, marginTop: 20 + 'px' }}><a href='https://soundcloud.com/david-leonardo-avendano-martinez' title='David Leonardo Martinez' target='_blank' style={{ color: '#cccccc', textDecoration: 'none' }}>David Leonardo Martinez</a> · <a href='https://soundcloud.com/david-leonardo-avendano-martinez/cancion-natrium' title='Canción Natrium' target='_blank' style={{ color: '#cccccc', textDecoration: 'none' }}>Canción Natrium</a></div>
+          </div>
         </div>
       </div>
     </section>
