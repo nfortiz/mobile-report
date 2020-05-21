@@ -44,7 +44,7 @@ export default function () {
   }`
 
   return (
-    <section id='performance'>
+    <section id='conectividad'>
       <Container>
         <Row>
           <Column>

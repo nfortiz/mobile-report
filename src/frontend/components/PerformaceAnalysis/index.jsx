@@ -5,7 +5,7 @@ import { Figure, FigureContainer, Paragraph } from './styles'
 
 export default function () {
   return (
-    <section id='conectividad'>
+    <section id='performance'>
       <Container>
         <Row>
           <Column>
